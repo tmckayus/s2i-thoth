@@ -4,7 +4,7 @@ FROM registry.access.redhat.com/ubi8/python-38:1-41
 ENV SUMMARY="Thoth's Source-to-Image for Python ${PYTHON_VERSION} applications" \
     DESCRIPTION="Thoth's Source-to-Image for Python ${PYTHON_VERSION} applications. This toolchain is based on Red Hat UBI8. It includes pipenv." \
     THOTH_S2I_NAME=quay.io/thoth-station/s2i-thoth-ubi8-py38 \
-    THOTH_S2I_VERSION=0.24.1 \
+    THOTH_S2I_VERSION=0.24.2 \
     THAMOS_NO_PROGRESSBAR=1 \
     THAMOS_NO_EMOJI=1
 
@@ -29,7 +29,7 @@ RUN TMPFILE=$(mktemp) && \
     pushd "${STI_SCRIPTS_PATH}" && patch -p 1 </tmp/s2i_assemble.patch && popd && \
     pip3 install -U "pip==20.3.3" && \
     /usr/bin/pip3 install -U "pip==20.3.3" && \
-    curl "https://raw.githubusercontent.com/thoth-station/s2i-thoth/master/requirements.txt" -o requirements.txt && \
+    curl "https://raw.githubusercontent.com/thoth-station/s2i-thoth/master/ubi8-py38/requirements.txt" -o requirements.txt && \
     MICROPIPENV_NO_LOCKFILE_WRITE=1 MICROPIPENV_PIP_BIN=/usr/bin/pip3 curl https://raw.githubusercontent.com/thoth-station/micropipenv/master/micropipenv.py | /usr/bin/python3 - install -- && \
     curl "https://raw.githubusercontent.com/thoth-station/s2i-thoth/master/assemble" -o "${TMPFILE_ASSEMBLE}" && \
     cp "${STI_SCRIPTS_PATH}/assemble" "${TMPFILE}" && \
