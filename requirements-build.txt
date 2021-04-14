@@ -4,6 +4,8 @@
 #
 #    pip-compile --allow-unsafe requirements-build.txt
 #
+cython==0.29.23
+    # via -r requirements-build.txt
 flit-core==3.2.0
     # via -r requirements-build.txt
 setuptools-scm==5.0.1
@@ -16,7 +18,9 @@ wheel==0.36.2
     # via -r requirements-build.txt
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==52.0.0
+setuptools==53.0.0
     # via
     #   -r requirements-build.txt
     #   setuptools-scm
+pip==21.0.1
+poetry-core==1.0.3
